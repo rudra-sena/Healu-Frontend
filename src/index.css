@@ -1,0 +1,26 @@
+.login input {
+    width: 50%;
+    align-items: center;
+    padding: 6px 10px;
+    margin: auto;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display:block;
+  }
+  .login button {
+    background: blueviolet;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btn{
+    background: blueviolet;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+
+  }
