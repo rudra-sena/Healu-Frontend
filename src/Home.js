@@ -1,7 +1,8 @@
 import { useState} from 'react';
 import Login from './Login';
+import {connect} from 'react-redux';
 
-const Home = () => {
+const Home = (props) => {
 
     const[click,setClick]=useState(false);
 
@@ -9,6 +10,9 @@ const Home = () => {
     const handleClick=() => {   
         localStorage.clear();
         setClick(true);
+
+        //Clearing data in redux store
+        props.clearStore();
 }
     
     return ( 
@@ -19,9 +23,14 @@ const Home = () => {
         </div>
         :
         <Login/>
-
-
      );
 }
- 
-export default Home;
+
+//Map the dispatch function to component props
+const mapDispatchToProps = (dispatch)=>{
+    return{
+    clearStore: () =>{dispatch({type:'CLEAR_STORE'})}
+    }
+}
+
+export default connect(mapDispatchToProps)(Home)

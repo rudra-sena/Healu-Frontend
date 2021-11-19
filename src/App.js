@@ -1,6 +1,4 @@
-import './App.css';
 import Login from './Login';
-//import Home from './Home';
 import Verify from './Verify';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 

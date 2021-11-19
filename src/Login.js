@@ -1,42 +1,24 @@
 import {useState, useEffect} from 'react';
-//import Home from './Home';
-
 import Home from './Home';
+import {connect} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux'
 
-const Login = () => {
+
+const Login = (props) => {
 
 //State variables of Login Parameters
 const[email,setEmail]=useState('');
 const[password,setPassword]=useState('');
-const[verificationToken,setToken]=useState('');
-const[login,setLogin]=useState(false);
-const[store,setStore]=useState(null);
 
-
-
-
-
-useEffect(()=>{
-    storeUpdate();
-})
-
-//Update store variable to sync with local storage
-const storeUpdate =()=>{
-    setStore(JSON.parse(localStorage.getItem('login')));
-    if(store && store.login){
-        setLogin(true);
-        setStore(store);
-    }
-}
 
   //Handling submit function 
   const loginRequest= (e)=>{
-    const user= {email: email,password: password, verificationToken: verificationToken};
+
+    //Setting user params and Login Req
+    const user= {email: email,password: password};
 
     e.preventDefault();
 
-    //Setting user params and Login Req
-    
     fetch('http://localhost:4000/accounts/authenticate/', {
       
       method: 'POST',
@@ -52,18 +34,26 @@ const storeUpdate =()=>{
 
         if(data.isVerified){
           //Set login status and JWT token in local storage
-            localStorage.setItem('login',JSON.stringify({
-                login: true,
-                token: data.jwtToken
-            })) 
-            storeUpdate();
+        
+            localStorage.setItem('login',true);
+            localStorage.setItem('token',data.jwtToken);
+
+            //This is printing undefined......
+            console.log('Printing update',props.updateStore());
+
+            //This is printing initial state of store(store not getting updated)
+            console.log(props.login,props.token);
                 
         }else if(data.message==='Email or password is incorrect'){
-            setLogin(false);
+          localStorage.setItem('login', false)
             setEmail('');
             setPassword('');
-            setToken('');
             window.alert("Invalid login data")
+
+            //Not getting updated here too
+            props.updateStore();
+            console.log(props.login,props.token)
+
         }
       })        
   }
@@ -72,7 +62,7 @@ const storeUpdate =()=>{
               
     <div className="login">
     {
-        !login?
+        !props.login?
 
       <form className="login" onSubmit={loginRequest}>
           <br /><br/>
@@ -94,15 +84,6 @@ const storeUpdate =()=>{
         /> 
         <br/><br/>
 
-        <label for="token">TOKEN</label>
-        <input type="text"
-        id="token"
-        required
-        value={verificationToken}
-        onChange={(e)=>setToken(e.target.value)}
-        />
-        <br/><br/>
-
         <button>Login</button>
         </form>
         :
@@ -113,4 +94,21 @@ const storeUpdate =()=>{
 
 }
 
-export default Login;
+//Map the store to component props
+const mapStateToProps=(state)=>{
+  return{
+    login: state.login, 
+    token: state.token
+  };
+};
+
+//Map the dispatch function to component props
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    updateStore: ()=>{dispatch({type:'UPDATE_STORE'})}
+  }
+}
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
