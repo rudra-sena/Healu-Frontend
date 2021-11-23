@@ -5,31 +5,26 @@ const initState={
 
 function mainReducer(state=initState,action) {
     if(action.type === 'UPDATE_STORE'){
-        
-        const newLogin=localStorage.getItem('login')
-        const newToken=localStorage.getItem('token')
-        console.log(newLogin)
-        console.log(newToken)
 
-        //St state to be in sync with local storage
-        const newState={...state,
-            login: newLogin,
-            token: newToken
-        }
-        console.log(newState);
-         return{
-             newState
+        //state.login=action.payload.login
+        //state.token=action.payload.token
+        
+        return{
+             login:action.payload.login,
+             token:action.payload.token
          }   
     }
     else if(action.type ==='CLEAR_STORE'){
+        state.login=action.payload.login
+        state.token=action.payload.token
         return{
-            login: false,
-            token:''
+            ...state
         }
     }
     else{
-
-        return state;
+        return{
+            ...state
+        }
     }
 
 }

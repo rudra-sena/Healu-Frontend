@@ -2,13 +2,20 @@ import {useState, useEffect} from 'react';
 import Home from './Home';
 import {connect} from 'react-redux';
 import {useSelector,useDispatch} from 'react-redux'
+import { useHistory } from 'react-router';
 
 
 const Login = (props) => {
 
+  const history=useHistory();
+
 //State variables of Login Parameters
 const[email,setEmail]=useState('');
 const[password,setPassword]=useState('');
+
+const checkState=() => {
+  console.log(props);
+}
 
 
   //Handling submit function 
@@ -33,36 +40,28 @@ const[password,setPassword]=useState('');
       .then((data)=>{
 
         if(data.isVerified){
-          //Set login status and JWT token in local storage
         
-            localStorage.setItem('login',true);
-            localStorage.setItem('token',data.jwtToken);
-
-            //This is printing undefined......
-            console.log('Printing update',props.updateStore());
-
-            //This is printing initial state of store(store not getting updated)
-            console.log(props.login,props.token);
+            props.updateStore({login:true,token:data.jwtToken});
+            history.push('/home')
                 
         }else if(data.message==='Email or password is incorrect'){
-          localStorage.setItem('login', false)
             setEmail('');
             setPassword('');
             window.alert("Invalid login data")
-
-            //Not getting updated here too
-            props.updateStore();
-            console.log(props.login,props.token)
-
+            props.updateStore({login:false});
         }
       })        
   }
 
+  if(props.login===true){
+    history.push('/home')
+  }
+  
     return ( 
               
     <div className="login">
     {
-        !props.login?
+        
 
       <form className="login" onSubmit={loginRequest}>
           <br /><br/>
@@ -85,9 +84,11 @@ const[password,setPassword]=useState('');
         <br/><br/>
 
         <button>Login</button>
+        <br/><br/>
+        <h3 style={{color:'blue'}}>Login to enter the Home Page</h3>
+        
         </form>
-        :
-        <Home/>
+        
 }
         </div>
     );
@@ -105,7 +106,7 @@ const mapStateToProps=(state)=>{
 //Map the dispatch function to component props
 const mapDispatchToProps=(dispatch)=>{
   return{
-    updateStore: ()=>{dispatch({type:'UPDATE_STORE'})}
+    updateStore: (payload)=>{dispatch({type:'UPDATE_STORE', payload: payload})}
   }
 }
 

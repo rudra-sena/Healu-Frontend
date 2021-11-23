@@ -1,6 +1,7 @@
 import Login from './Login';
-import Verify from './Verify';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './Home';
+import NotFound from './NotFound';
 
 function App() {
  
@@ -12,8 +13,11 @@ function App() {
           <Login/>
         </Route>
         <Route exact path="/home">
-          <Verify />
-        </Route>          
+          <Home />
+        </Route> 
+        <Route path="*">
+          <NotFound/>  
+        </Route>         
       </Switch>
       </div>
     </Router>
