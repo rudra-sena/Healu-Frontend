@@ -1,4 +1,3 @@
-import { useEffect} from 'react';
 import {connect} from 'react-redux';
 import { useHistory } from 'react-router';
 const Home = (props) => {
@@ -31,7 +30,6 @@ const mapStateToProps=(state) => {
 //Map the dispatch function to component props
 const mapDispatchToProps = (dispatch)=>{
     return{
-    updateStore: (payload) => dispatch({type: 'UPDATE_STORE', payload: payload}),
     clearStore: (payload) =>{dispatch({type:'CLEAR_STORE',payload:payload})}
     }
 }

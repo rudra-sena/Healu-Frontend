@@ -1,0 +1,131 @@
+body{
+  font-family: circular-spotify-ui,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.header{
+    overflow: hidden;
+    font-size: 2.5em;
+    padding: 10px 10px;
+    border-bottom: 1px solid rgb(202, 202, 202) ;
+}
+.login{
+  margin-left: 35%;
+  margin-right:35%;
+}
+
+.continue{
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    align-items: center;
+    padding: 12px;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-sizing: border-box;
+    display:block;
+}
+#fb{
+  background: #3B5998;
+  color: white;
+}
+#fbi{
+  width: 5%;
+  border-radius: 50%;
+  background: white;
+  color: #3B5998;
+}
+#fb:hover{
+  background: #4462c2;
+  cursor: pointer;
+}
+#apple{
+  background: black;
+  color: white;
+}
+#applei{
+  width: 5%;
+  border-radius: 50%;
+  color: white;
+}
+#apple:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+#google{
+  border: 2px solid rgba(68, 68, 68, 0.829);
+  background: white;
+  color: rgba(68, 68, 68,0.829);
+}
+#google:hover{
+  background-color: rgb(78, 76, 76);
+  color: rgb(236, 233, 233);
+  cursor: pointer;
+}
+#ph:hover{
+  background-color: rgb(78, 76, 76);
+  color: rgb(236, 233, 233);
+  cursor: pointer;
+}
+#googlei{
+  width: 5%;
+  border-radius: 50%;
+}
+#ph{
+  border: 2px solid rgba(68, 68, 68, 0.829);
+  background: white;
+  color: rgba(68, 68, 68,0.829);
+}
+.login input {
+    width: 100%;
+    align-items: center;
+    padding: 6px 10px;
+    margin: auto;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display:block;
+  }
+.label{
+  text-align: left;
+  font-weight: bold;
+  font-size:15px;
+}
+.forgot{
+  text-align: left;
+}
+.forgot :hover{
+  color: rgb(22, 165, 77);
+  cursor: pointer;
+}
+
+.container1{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+  .container1 div{
+    padding: 5px
+  }
+  .container2{
+    display: flex;
+    border-bottom: 1px solid rgb(202, 202, 202) ;
+  }
+  .container2 div{
+    flex:1;
+    align-items: center;
+  }
+.rem :hover{
+  cursor: pointer;
+}
+.btn{
+  width: 100%;
+  background-color: rgb(22, 165, 77);
+  border-radius: 25px;
+  padding:10px;
+  color: white;
+  border: 0px;
+  align-items: center;
+}
+.btn:hover{
+  background-color: rgb(39, 199, 100);
+  cursor: pointer;
+}

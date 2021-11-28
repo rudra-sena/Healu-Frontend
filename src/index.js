@@ -9,7 +9,6 @@ import mainReducer from './reducers/mainReducer'
 import App from './App'
 import './styles/index.css'
 
-
 const persistConfig = {
   key:'root',
   storage

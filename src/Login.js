@@ -3,20 +3,17 @@ import Home from './Home';
 import {connect} from 'react-redux';
 import {useSelector,useDispatch} from 'react-redux'
 import { useHistory } from 'react-router';
+import LoginCSS from './styles/login.module.css'
+
 
 
 const Login = (props) => {
-
+  
   const history=useHistory();
 
 //State variables of Login Parameters
 const[email,setEmail]=useState('');
 const[password,setPassword]=useState('');
-
-const checkState=() => {
-  console.log(props);
-}
-
 
   //Handling submit function 
   const loginRequest= (e)=>{
@@ -59,38 +56,72 @@ const checkState=() => {
   
     return ( 
               
-    <div className="login">
-    {
-        
+    <div>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      </head>
+      <div className={LoginCSS.header}>
+        <b><a class="fa fa-spotify"/>Healu</b>
+      </div>
+      <h5><b>To continue, log in to Healu</b></h5>
+
+      <div className={LoginCSS.login}>
+
+      <div className={LoginCSS.container1}>
+      <div><button className={LoginCSS.continue} id={LoginCSS.fb}><a class="fa fa-facebook" id={LoginCSS.fbi}></a> CONTINUE WITH FACEBOOK</button></div>
+      <div><button className={LoginCSS.continue} id={LoginCSS.apple}><a class="fa fa-apple" id={LoginCSS.applei}></a>  CONTINUE WITH APPLE</button></div>
+      <div><button className={LoginCSS.continue} id={LoginCSS.google}><a class="fa fa-google" id={LoginCSS.googlei}></a>  CONTINUE WITH GOOGLE</button></div>
+      <div><button className={LoginCSS.continue} id={LoginCSS.ph}>CONTINUE WITH PHONE NUMBER</button></div>
+      
+      
+      <div>OR</div>
+      
 
       <form className="login" onSubmit={loginRequest}>
-          <br /><br/>
-      <label for="email">EMAIL</label>
+          
+      <div className={LoginCSS.label}><label for="email">Email address or username</label></div>
         <input type="text"
-        id="email"
         required
+        id="email"
+        placeholder="Email address or username"
         value={email}
         onChange={(e)=>setEmail(e.target.value)}
         />
-        <br/><br/>
         
-        <label for="password">PASSWORD</label>
+        
+        <div className={LoginCSS.label}><label for="password">Password</label></div>
         <input type="password"
-        id="password"
         required
+        id="password"
+        placeholder="Password"
         value={password}
         onChange={(e)=>setPassword(e.target.value)}
         /> 
-        <br/><br/>
+        
+        <div className={LoginCSS.forgot}><u>Forgot your password?</u></div>
+        <br/>
+        
+        <div className={LoginCSS.container2}>
 
-        <button>Login</button>
-        <br/><br/>
-        <h3 style={{color:'blue'}}>Login to enter the Home Page</h3>
-        
-        </form>
-        
-}
+      <div className={LoginCSS.check}>
+      
+      <div> <input type="checkbox" id="rem" className={LoginCSS.checkbox}/> </div>
+      <div> <label for="rem" className={LoginCSS.rem}> Remember me? </label> </div>
+      </div>
+      
+      <div>
+        <button className={LoginCSS.btn}>LOG IN</button>
+
         </div>
+      </div>
+      </form>
+      <h3><b>Don't have an account?</b></h3> 
+      <div><button className={LoginCSS.continue} id={LoginCSS.ph}>SIGN UP FOR HEALU</button></div>
+
+      </div>
+
+      </div>
+      </div>
     );
 
 }
